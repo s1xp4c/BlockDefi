@@ -11,6 +11,8 @@ export type TUserData = {
   expirationTime: string;
   bio: string;
   username: string;
+  email: string;
+  phone: number;
 };
 
 export interface ISession {

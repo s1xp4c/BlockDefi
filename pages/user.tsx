@@ -50,7 +50,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     profileId: session?.user.profileId,
   }).lean();
 
-  const userData = { address: userB?.address, profileId: userM?.profileId, bio: userM?.bio, username: userM?.username };
+  const userData = {
+    address: userB?.address,
+    profileId: userM?.profileId,
+    bio: userM?.bio,
+    username: userM?.username,
+    email: userM?.email,
+    phone: userM?.phone,
+  };
 
   return {
     props: {

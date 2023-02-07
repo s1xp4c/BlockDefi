@@ -22,9 +22,12 @@ import {
   Textarea,
   useToast,
   keyframes,
+  InputLeftAddon,
+  InputGroup,
+  Stack,
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import { EditIcon, CopyIcon } from '@chakra-ui/icons';
+import { EditIcon, CopyIcon, EmailIcon, PhoneIcon } from '@chakra-ui/icons';
 import { getEllipsisTxt } from 'utils/format';
 import ultralightCopy from 'copy-to-clipboard-ultralight';
 import { IUserData } from './types';
@@ -36,6 +39,8 @@ const User: FC<IUserData> = ({ userData }) => {
 
   const [inputValueName, setInputValueName] = useState('');
   const [inputValueBio, setInputValueBio] = useState('');
+  const [inputValueEmail, setInputValueEmail] = useState('');
+  const [inputValuePhone, setInputValuePhone] = useState('');
 
   const animationKeyframes = keyframes`
   0% { transform: scale(1) rotate(0); border-radius: 20%; }
@@ -61,7 +66,7 @@ const User: FC<IUserData> = ({ userData }) => {
         },
       },
     );
-
+    setInputValueName('');
     console.log(`User Updated with: ${data.bio}`);
   }
 
@@ -77,6 +82,34 @@ const User: FC<IUserData> = ({ userData }) => {
     );
 
     console.log(`User Updated with: ${data.username}`);
+  }
+
+  async function updateUserEmail() {
+    const { data } = await axios.post(
+      'api/updateMongoUser',
+      { profileId: userData.profileId, email: inputValueEmail },
+      {
+        headers: {
+          'content-type': 'application/json',
+        },
+      },
+    );
+
+    console.log(`User Updated with: ${data.email}`);
+  }
+
+  async function updateUserPhone() {
+    const { data } = await axios.post(
+      'api/updateMongoUser',
+      { profileId: userData.profileId, phone: inputValuePhone },
+      {
+        headers: {
+          'content-type': 'application/json',
+        },
+      },
+    );
+
+    console.log(`User Updated with: ${data.phone}`);
   }
 
   return (
@@ -147,7 +180,7 @@ const User: FC<IUserData> = ({ userData }) => {
               </Thead>
               <Tbody>
                 <Tr _hover={{ bgColor: hoverTrColor }} cursor="pointer">
-                  <Td>{!inputValueName ? userData.username : inputValueName}</Td>
+                  <Td>{inputValueName ? inputValueName : userData.username}</Td>
                   <Td></Td>
                 </Tr>
               </Tbody>
@@ -159,12 +192,19 @@ const User: FC<IUserData> = ({ userData }) => {
                   <Td>
                     {' '}
                     {
-                      <Input
-                        value={inputValueName}
-                        onChange={(e) => setInputValueName(e.target.value)}
-                        id="nameInput"
-                        placeholder={'Update your cool Username?'}
-                      ></Input>
+                      <>
+                        <Stack spacing={4}>
+                          <InputGroup>
+                            <InputLeftAddon pointerEvents="none" children={<Avatar size="xs" color="gray.300" />} />
+                            <Input
+                              value={inputValueName}
+                              onChange={(e) => setInputValueName(e.target.value)}
+                              id="nameInput"
+                              placeholder={'Update your cool Username?'}
+                            ></Input>
+                          </InputGroup>
+                        </Stack>
+                      </>
                     }
                   </Td>
                   <Td textAlign={'right'} w={'20px'}>
@@ -183,6 +223,134 @@ const User: FC<IUserData> = ({ userData }) => {
                         }
                       >
                         <Button onClick={() => updateUserName()}>
+                          <EditIcon></EditIcon>{' '}
+                        </Button>
+                      </Box>
+                    }
+                  </Td>
+                </Tr>
+              </Tbody>
+            </Table>
+            <Table>
+              <Thead>
+                <Tr>
+                  <Th>E-mail:</Th>
+                  <Th></Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                <Tr _hover={{ bgColor: hoverTrColor }} cursor="pointer">
+                  <Td>{!inputValueEmail ? userData.email : inputValueEmail}</Td>
+                  <Td></Td>
+                </Tr>
+              </Tbody>
+            </Table>
+
+            <Table>
+              <Tbody>
+                <Tr>
+                  <Td>
+                    {' '}
+                    {
+                      <>
+                        <Stack spacing={4}>
+                          <InputGroup>
+                            <InputLeftAddon
+                              pointerEvents="none"
+                              children={<EmailIcon fontSize="1.6em" color="gray.300" />}
+                            />
+                            <Input
+                              type={'email'}
+                              value={inputValueEmail}
+                              onChange={(e) => setInputValueEmail(e.target.value)}
+                              id="emailInput"
+                              placeholder={'Set your E-mail'}
+                            ></Input>
+                          </InputGroup>
+                        </Stack>
+                      </>
+                    }
+                  </Td>
+                  <Td textAlign={'right'} w={'20px'}>
+                    {
+                      <Box
+                        onClick={() =>
+                          toast({
+                            position: 'top',
+                            title: 'Yeeees!',
+                            description: 'Your E-mail is updated',
+                            status: 'success',
+                            duration: 3000,
+                            isClosable: false,
+                            variant: 'solid',
+                          })
+                        }
+                      >
+                        <Button onClick={() => updateUserEmail()}>
+                          <EditIcon></EditIcon>{' '}
+                        </Button>
+                      </Box>
+                    }
+                  </Td>
+                </Tr>
+              </Tbody>
+            </Table>
+            <Table>
+              <Thead>
+                <Tr>
+                  <Th>Phone:</Th>
+                  <Th></Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                <Tr _hover={{ bgColor: hoverTrColor }} cursor="pointer">
+                  <Td>{!inputValuePhone ? userData.phone : inputValuePhone}</Td>
+                  <Td></Td>
+                </Tr>
+              </Tbody>
+            </Table>
+
+            <Table>
+              <Tbody>
+                <Tr>
+                  <Td>
+                    {' '}
+                    {
+                      <>
+                        <Stack spacing={4}>
+                          <InputGroup>
+                            <InputLeftAddon
+                              pointerEvents="none"
+                              children={<PhoneIcon fontSize="1.6em" color="gray.300" />}
+                            />
+                            <Input
+                              type="tel"
+                              value={inputValuePhone}
+                              onChange={(e) => setInputValuePhone(e.target.value)}
+                              id="phoneInput"
+                              placeholder={'Let us call you <3'}
+                            ></Input>
+                          </InputGroup>
+                        </Stack>
+                      </>
+                    }
+                  </Td>
+                  <Td textAlign={'right'} w={'20px'}>
+                    {
+                      <Box
+                        onClick={() =>
+                          toast({
+                            position: 'top',
+                            title: 'Ringleberry!',
+                            description: 'Your Phone number is updated',
+                            status: 'success',
+                            duration: 3000,
+                            isClosable: false,
+                            variant: 'solid',
+                          })
+                        }
+                      >
+                        <Button onClick={() => updateUserPhone()}>
                           <EditIcon></EditIcon>{' '}
                         </Button>
                       </Box>
@@ -272,9 +440,23 @@ const User: FC<IUserData> = ({ userData }) => {
                   </Td>
                   <Td textAlign={'right'} w={'20px'}>
                     {
-                      <Button onClick={() => updateUserBio()}>
-                        <EditIcon></EditIcon>{' '}
-                      </Button>
+                      <Box
+                        onClick={() =>
+                          toast({
+                            position: 'top',
+                            title: 'Shazaaaaam!',
+                            description: 'Your personal bio has been updated',
+                            status: 'success',
+                            duration: 3000,
+                            isClosable: false,
+                            variant: 'solid',
+                          })
+                        }
+                      >
+                        <Button onClick={() => updateUserBio()}>
+                          <EditIcon></EditIcon>{' '}
+                        </Button>
+                      </Box>
                     }
                   </Td>
                 </Tr>

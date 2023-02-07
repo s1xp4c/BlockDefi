@@ -3,6 +3,8 @@ type TUserData = {
   profileId: string;
   bio?: string;
   username?: string;
+  email?: string;
+  phone?: string;
 };
 
 export interface IUserData {
