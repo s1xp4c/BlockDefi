@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, FC } from 'react';
 import React from 'react';
 import axios from 'axios';
+
 import {
   TableContainer,
   Table,
@@ -26,20 +27,15 @@ import { motion } from 'framer-motion';
 import { EditIcon, CopyIcon } from '@chakra-ui/icons';
 import { getEllipsisTxt } from 'utils/format';
 import ultralightCopy from 'copy-to-clipboard-ultralight';
+import { IUserData } from './types';
 
-function User({ user }) {
+const User: FC<IUserData> = ({ userData }) => {
   const hoverTrColor = useColorModeValue('gray.100', 'gray.700');
   const [addressHovered, setAddressHovered] = useBoolean();
   const [profileIdHovered, setProfileIdHovered] = useBoolean();
 
-  const [bioValue, changeBioValue] = useState();
-  const [nameValue, changeNameValue] = useState();
-
-  const [pulledBio, changePulledBio] = useState(user.bio);
-  const [pulledName, changePulledName] = useState(user.username);
-
-  const [inputValueName, changeInputValueName] = useState(undefined);
-  const [inputValueBio, changeInputValueBio] = useState(undefined);
+  const [inputValueName, setInputValueName] = useState('');
+  const [inputValueBio, setInputValueBio] = useState('');
 
   const animationKeyframes = keyframes`
   0% { transform: scale(1) rotate(0); border-radius: 20%; }
@@ -49,12 +45,7 @@ function User({ user }) {
 
   const toast = useToast();
 
-  const userProfileId = user.profileId;
-  const userAddress = user.address;
-
-  useEffect(() => console.log('user: ', user), [user]);
-
-  const copyToClipboard = (e) => {
+  const copyToClipboard = (e: string | undefined) => {
     if (e) {
       ultralightCopy(e);
     }
@@ -63,30 +54,28 @@ function User({ user }) {
   async function updateUserBio() {
     const { data } = await axios.post(
       'api/updateMongoUser',
-      { profileId: user.profileId, bio: bioValue, username: nameValue },
+      { profileId: userData.profileId, bio: inputValueBio },
       {
         headers: {
           'content-type': 'application/json',
         },
       },
     );
-    changePulledBio(data.bio);
-    changeInputValueBio('');
+
     console.log(`User Updated with: ${data.bio}`);
   }
 
   async function updateUserName() {
     const { data } = await axios.post(
       'api/updateMongoUser',
-      { profileId: user.profileId, username: nameValue },
+      { profileId: userData.profileId, username: inputValueName },
       {
         headers: {
           'content-type': 'application/json',
         },
       },
     );
-    changePulledName(data.username);
-    changeInputValueName('');
+
     console.log(`User Updated with: ${data.username}`);
   }
 
@@ -100,7 +89,7 @@ function User({ user }) {
         </GridItem>
       </Grid>
 
-      {user ? (
+      {userData?.profileId ? (
         <Box border="2px" borderColor={hoverTrColor} borderRadius="xl" padding="26px 18px" userSelect={'none'}>
           <TableContainer>
             <Table>
@@ -121,7 +110,7 @@ function User({ user }) {
                   onMouseLeave={setProfileIdHovered.off}
                   cursor="pointer"
                 >
-                  {profileIdHovered ? <Td>{userProfileId}</Td> : <Td>{getEllipsisTxt(userProfileId)}</Td>}
+                  {profileIdHovered ? <Td>{userData.profileId}</Td> : <Td>{getEllipsisTxt(userData.profileId)}</Td>}
                   <Td textAlign={'right'} w={'20px'}>
                     {' '}
                     <Box
@@ -134,11 +123,14 @@ function User({ user }) {
                           duration: 3000,
                           isClosable: false,
                           variant: 'solid',
-                          motionPreset: 'slide-in-top',
                         })
                       }
                     >
-                      <Button onClick={copyToClipboard(userProfileId)}>
+                      <Button
+                        onClick={() => {
+                          copyToClipboard(userData.profileId);
+                        }}
+                      >
                         <CopyIcon></CopyIcon>
                       </Button>
                     </Box>
@@ -155,7 +147,7 @@ function User({ user }) {
               </Thead>
               <Tbody>
                 <Tr _hover={{ bgColor: hoverTrColor }} cursor="pointer">
-                  <Td>{pulledName}</Td>
+                  <Td>{!inputValueName ? userData.username : inputValueName}</Td>
                   <Td></Td>
                 </Tr>
               </Tbody>
@@ -168,20 +160,32 @@ function User({ user }) {
                     {' '}
                     {
                       <Input
-                        id="nameInput"
-                        onChange={(e) => {
-                          changeNameValue(e.target.value);
-                        }}
-                        placeholder={'Update your cool Username?'}
                         value={inputValueName}
+                        onChange={(e) => setInputValueName(e.target.value)}
+                        id="nameInput"
+                        placeholder={'Update your cool Username?'}
                       ></Input>
                     }
                   </Td>
                   <Td textAlign={'right'} w={'20px'}>
                     {
-                      <Button onClick={() => updateUserName()}>
-                        <EditIcon></EditIcon>{' '}
-                      </Button>
+                      <Box
+                        onClick={() =>
+                          toast({
+                            position: 'top',
+                            title: 'Perfect!',
+                            description: 'Your username is updated',
+                            status: 'success',
+                            duration: 3000,
+                            isClosable: false,
+                            variant: 'solid',
+                          })
+                        }
+                      >
+                        <Button onClick={() => updateUserName()}>
+                          <EditIcon></EditIcon>{' '}
+                        </Button>
+                      </Box>
                     }
                   </Td>
                 </Tr>
@@ -201,7 +205,7 @@ function User({ user }) {
                   onMouseLeave={setAddressHovered.off}
                   cursor="pointer"
                 >
-                  {!addressHovered ? <Td>{getEllipsisTxt(userAddress)}</Td> : <Td>{userAddress}</Td>}
+                  {!addressHovered ? <Td>{getEllipsisTxt(userData.address)}</Td> : <Td>{userData.address}</Td>}
                   <Td textAlign={'right'} w={'20px'}>
                     {' '}
                     <Box
@@ -214,11 +218,14 @@ function User({ user }) {
                           duration: 3000,
                           isClosable: false,
                           variant: 'solid',
-                          motionPreset: 'slide-in-top',
                         })
                       }
                     >
-                      <Button onClick={copyToClipboard(userAddress)}>
+                      <Button
+                        onClick={() => {
+                          copyToClipboard(userData.address);
+                        }}
+                      >
                         <CopyIcon></CopyIcon>
                       </Button>
                     </Box>
@@ -235,7 +242,7 @@ function User({ user }) {
               </Thead>
               <Tbody>
                 <Tr _hover={{ bgColor: hoverTrColor }} cursor="pointer">
-                  <Td id="pWrap">{pulledBio}</Td>
+                  <Td id="pWrap">{!inputValueBio ? userData.bio : inputValueBio}</Td>
                   <Td></Td>
                 </Tr>
               </Tbody>
@@ -253,13 +260,12 @@ function User({ user }) {
         }`}
                         </style>
                         <Textarea
-                          id="aboutInput"
-                          type="textarea"
+                          id="pWrap"
                           rows={3}
-                          onChange={(e) => changeBioValue(e.target.value)}
                           placeholder={'So, what´s up with You?'}
-                          value={inputValueBio}
                           resize={'none'}
+                          value={inputValueBio}
+                          onChange={(e) => setInputValueBio(e.target.value)}
                         ></Textarea>
                       </>
                     }
@@ -281,5 +287,5 @@ function User({ user }) {
       )}
     </>
   );
-}
+};
 export default User;
