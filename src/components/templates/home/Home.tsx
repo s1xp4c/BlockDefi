@@ -1,11 +1,7 @@
 import { Box, Heading } from '@chakra-ui/react';
 import { AnimateSphere } from 'components/modules/AnimateSphere';
-import { FC } from 'react';
-import { IBoxCSS } from './types';
 
-const Home: FC<IBoxCSS> = ({ cssTypes }) => {
-  const styleTypes = cssTypes;
-  console.log(styleTypes);
+const Home = () => {
   return (
     <>
       <Heading size="md" marginBottom={6} textAlign={'center'}>
