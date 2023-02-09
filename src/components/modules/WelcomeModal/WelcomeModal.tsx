@@ -1,10 +1,8 @@
 import {
-  Button,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   ModalOverlay,
   useDisclosure,
@@ -27,7 +25,7 @@ function WelcomeModal() {
         <ModalContent>
           <ModalHeader>Welcome to BACD Finance</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>
+          <ModalBody marginBottom={'4'}>
             <Text>
               <InfoIcon color="green.400" marginRight={'2'} />
               {'Please be adviced that this is a final exam project from KEA and is to be used at your own discretion.'}
@@ -42,9 +40,6 @@ function WelcomeModal() {
             <br></br>
             <Text>{'Please DYOR! (Do Your Own Research)'}</Text>
           </ModalBody>
-          <ModalFooter>
-            <Button onClick={onClose}>Close</Button>
-          </ModalFooter>
         </ModalContent>
       </Modal>
     </>
