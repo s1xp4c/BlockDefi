@@ -18,6 +18,11 @@ const SNAV_LINKS: ISideNav[] = [
     logo: 'documentation',
   },
   {
+    label: 'OPENAI',
+    href: '/openai',
+    logo: 'wizard',
+  },
+  {
     label: 'CHARTS',
     href: '/charts',
     children: [
@@ -34,11 +39,6 @@ const SNAV_LINKS: ISideNav[] = [
         logo: 'chest',
       },
     ],
-  },
-  {
-    label: 'OPENAI',
-    href: '/openai',
-    logo: 'wizard',
   },
 ];
 

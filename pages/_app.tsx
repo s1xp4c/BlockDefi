@@ -24,7 +24,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <ChakraProvider resetCSS theme={theme}>
       <WagmiConfig client={client}>
-        <SessionProvider session={pageProps.session} refetchInterval={300}>
+        <SessionProvider session={pageProps.session} refetchInterval={0}>
           <Component {...pageProps} />
         </SessionProvider>
       </WagmiConfig>

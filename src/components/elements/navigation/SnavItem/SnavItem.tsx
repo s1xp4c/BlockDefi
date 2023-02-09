@@ -13,7 +13,7 @@ const SnavItem: FC<ISideNav> = ({ label, children, href }) => {
   const isCurrentPath = router.asPath === href || (href !== '/' && router.pathname.startsWith(href || ''));
 
   return (
-    <Popover trigger={'click'} placement={'right-start'}>
+    <Popover trigger={'click'} placement={'bottom-start'}>
       <PopoverTrigger>
         <Box>
           <Box

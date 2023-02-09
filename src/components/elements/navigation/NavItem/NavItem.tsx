@@ -50,7 +50,7 @@ const NavItem: FC<ISubNav> = ({ label, children, href }) => {
         <PopoverContent border={0} boxShadow={'xl'} p={4} rounded={'xl'} minW={'sm'}>
           <Stack>
             {children.map((child) => (
-              <SubNav key={child.label} {...child} />
+              <SubNav key={`child-${child.label}`} {...child} />
             ))}
           </Stack>
         </PopoverContent>

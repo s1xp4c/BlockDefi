@@ -46,7 +46,7 @@ class AnimateSphere extends Component {
   //   cancelAnimationFrame(this.frameId);
   // };
   animate = () => {
-    this.sphere.rotation.x += 0.01;
+    this.sphere.rotation.x += 0.005;
     this.sphere.rotation.y += 0.01;
     this.renderScene();
     // eslint-disable-next-line no-undef
@@ -57,12 +57,10 @@ class AnimateSphere extends Component {
   };
 
   render() {
-    console.log('Why the fuck are you renedering twice???');
-
     return (
       <Box
         id={'myID'}
-        style={{ width: '40vw', height: '40vw' }}
+        style={{ width: '35vw', height: '35vw' }}
         ref={(mount) => {
           this.mount = mount;
         }}
