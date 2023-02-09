@@ -42,7 +42,6 @@ function OpenAI(useraddress: IUser) {
           headers: {
             Accept: 'application/json',
           },
-          timeout: 60000,
         },
       );
       if (
