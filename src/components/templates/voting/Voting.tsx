@@ -28,7 +28,7 @@ function Voting(voting: IVoting) {
           max-width={'600px'}
           min-width={'300px'}
         >
-          <iframe src="https://voting.bacd.io/" height={'560px'} width={'100%'} />
+          <iframe title={'bacdVoting'} src="https://voting.bacd.io/" height={'560px'} width={'100%'} />
         </Box>
       </Box>
     </>
