@@ -1,8 +1,9 @@
 type TUserData = {
-  address: string | string;
-  otherProp?: string | unknown;
+  address: string;
+  profileId: string;
+  username?: string;
 };
 
-export interface IUser {
-  useraddress: TUserData[];
+export interface IUserData {
+  userData: TUserData;
 }

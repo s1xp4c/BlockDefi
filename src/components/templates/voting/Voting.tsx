@@ -2,6 +2,7 @@ import { Box, Heading, useColorModeValue } from '@chakra-ui/react';
 import { IVoting } from './types';
 
 import { useEffect } from 'react';
+import { VotingModal } from 'components/modules/VotingModal';
 
 function Voting(voting: IVoting) {
   const hoverTrColor = useColorModeValue('gray.100', 'gray.700');
@@ -10,6 +11,7 @@ function Voting(voting: IVoting) {
 
   return (
     <>
+      <VotingModal />
       <Heading size="lg" marginBottom={6}>
         Decentralized Voting
       </Heading>

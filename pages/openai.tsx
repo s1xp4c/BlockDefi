@@ -1,13 +1,15 @@
 import { Default } from 'components/layouts/Default';
 import { GetServerSideProps, NextPage } from 'next';
-import { OpenAI } from 'components/templates/openAI';
 import { getSession } from 'next-auth/react';
 import Moralis from 'moralis';
 import { LoadingSpinner } from 'components/modules';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import connectDB from './api/auth/connectDB';
+import { IUserData, OpenAI } from 'components/templates/openAI';
+import Users from './api/auth/userSchema';
 
-const openAIPage: NextPage = (props) => {
+const openAIPage: NextPage<IUserData> = (props) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -23,7 +25,7 @@ const openAIPage: NextPage = (props) => {
       router.events.off('routeChangeComplete', endHandler);
     };
   }, [router.events]);
-  return <Default pageName="OpenAI">{loading ? <LoadingSpinner /> : <OpenAI useraddress={[]} {...props} />}</Default>;
+  return <Default pageName="OpenAI">{loading ? <LoadingSpinner /> : <OpenAI {...props} />}</Default>;
 };
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context);
@@ -35,16 +37,24 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (!session?.user.address) {
     return { props: { error: 'Connect your wallet first' } };
   }
-
   const userB = {
     address: session?.user.address,
   };
+  await connectDB();
 
-  const userAddress = { address: userB?.address };
+  const userM = await Users.findOne({
+    profileId: session?.user.profileId,
+  }).lean();
+
+  const userData = {
+    address: userB?.address,
+    profileId: userM?.profileId,
+    username: userM?.username,
+  };
 
   return {
     props: {
-      useraddress: JSON.parse(JSON.stringify(userAddress)),
+      userData: JSON.parse(JSON.stringify(userData)),
     },
   };
 };

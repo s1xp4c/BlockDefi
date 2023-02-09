@@ -10,16 +10,16 @@ import {
   Skeleton,
   Stack,
 } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
-import { IUser } from './types';
+import { FC, useEffect, useState } from 'react';
+import { IUserData } from './types';
 import { Eth, Btc, Link, Ada, Bnb } from '@web3uikit/icons';
 import { LoadingSpinner } from 'components/modules';
 import axios from 'axios';
 
-function OpenAI(useraddress: IUser) {
+const OpenAI: FC<IUserData> = ({ userData }) => {
   const hoverLiColor = useColorModeValue('gray.100', 'gray.700');
 
-  useEffect(() => console.log('User Address: ', useraddress), [useraddress]);
+  useEffect(() => console.log('Userdata ', userData), [userData]);
 
   const [coinInput, setCoinInput] = useState('');
   const [result, setResult] = useState<string>('');
@@ -64,7 +64,8 @@ function OpenAI(useraddress: IUser) {
   return (
     <>
       <Heading size="md" marginBottom={6}>
-        Try out BACD OPENAI
+        {userData?.username}
+        {'! - Try out BACD OPENAI'}
       </Heading>
       <Flex
         border="2px"
@@ -86,7 +87,7 @@ function OpenAI(useraddress: IUser) {
         </Heading>
         <Heading size="xs" marginBottom={6}>
           {' '}
-          {'as investment advice. The AI answers are limited to data from before 2021.'}
+          {'as investment advice. The AI answers are limited to data from before 2022.'}
         </Heading>
         <Box marginBottom={6}>
           <Grid templateColumns="repeat(5, 1fr)" gap={6}>
@@ -155,6 +156,6 @@ function OpenAI(useraddress: IUser) {
       </Flex>
     </>
   );
-}
+};
 
 export default OpenAI;
