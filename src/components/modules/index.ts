@@ -7,3 +7,4 @@ export * from './LoadingSpinner';
 export * from './AnimateSphere';
 export * from './Ticker';
 export * from './WelcomeModal';
+export * from './VotingModal';

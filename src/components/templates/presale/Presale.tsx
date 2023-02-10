@@ -10,10 +10,22 @@ function Presale(presale: IPresale) {
   return (
     <>
       <Heading size="lg" marginBottom={6}>
-        Presale
+        Presale ICO/STO
+      </Heading>
+      <Heading size="xs" marginBottom={6}>
+        Please choose your platform and sign up or login,
       </Heading>
       <Box border="2px" borderColor={hoverTrColor} borderRadius="xl" padding="24px 18px" userSelect={'none'}>
-        <Box>{'Fuuuudge'}</Box>
+        <Box
+          borderWidth={'none'}
+          margin={'0 auto'}
+          display={'block'}
+          border-radius={'10px'}
+          max-width={'600px'}
+          min-width={'300px'}
+        >
+          <iframe title={'tzenPresale'} src="https://tzen.bacd.io/" height={'1000px'} width={'100%'} />
+        </Box>
       </Box>
     </>
   );

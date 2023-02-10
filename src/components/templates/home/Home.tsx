@@ -10,7 +10,7 @@ const Home = () => {
         Welcome!
       </Heading>
       <Heading size="sm" marginBottom={3} textAlign={'center'}>
-        Merging Centralized and DeCentralized Finance..
+        Merging Centralized and DeCentralized Finance . . .
       </Heading>
       <Heading size="sm" marginBottom={1} textAlign={'center'}>
         Please connect your wallet to see your Blockchain Interactions
