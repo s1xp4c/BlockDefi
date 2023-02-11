@@ -34,6 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       prompt: generatePrompt(coin),
       temperature: 0.8,
       max_tokens: 2048,
+      echo: false,
     });
     res.status(200).json({ result: completion.data.choices[0].text });
   } catch (error) {

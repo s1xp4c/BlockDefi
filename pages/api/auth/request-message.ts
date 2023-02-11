@@ -2,10 +2,10 @@ import Moralis from 'moralis';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 const config = {
-  domain: process.env.APP_DOMAIN || 'blockdefi.netlify.app',
+  domain: process.env.APP_DOMAIN || 'https://blockdefi.netlify.app',
   statement:
     'Please sign this message to confirm your identity and let BACD read and display the content of your wallet',
-  uri: process.env.NEXTAUTH_URL || 'https://blockdefi.netlify.app//',
+  uri: process.env.NEXTAUTH_URL || 'https://blockdefi.netlify.app',
   timeout: 60,
 };
 
