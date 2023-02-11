@@ -37,7 +37,7 @@ const OpenAI: FC<IUserData> = ({ userData }) => {
     try {
       const response = await axios.post(
         'api/auth/generate',
-        { coin: coinInput },
+        { coin: coinInput, username: userData?.username },
         {
           headers: {
             Accept: 'application/json',
@@ -66,6 +66,7 @@ const OpenAI: FC<IUserData> = ({ userData }) => {
   return (
     <>
       <Heading size="md" marginBottom={6}>
+        {'Hello '}
         {userData?.username}
         {'! - Try out BACD OPENAI'}
       </Heading>

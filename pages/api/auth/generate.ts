@@ -18,6 +18,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return;
   }
 
+  const username = req.body.username || 'Any';
+
   const coin = req.body.coin || 'Any';
   if (coin.trim().length === 0) {
     res.status(400).json({
@@ -31,7 +33,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     const completion = await openai.createCompletion({
       model: 'text-davinci-003',
-      prompt: generatePrompt(coin),
+      prompt: generatePrompt(coin, username),
       temperature: 0.8,
       max_tokens: 2048,
       echo: false,
@@ -43,9 +45,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 }
 
-function generatePrompt(coin: string): string {
+function generatePrompt(coin: string, username: string): string {
   const capitalizedCoin = coin[0].toUpperCase() + coin.slice(1).toLowerCase();
-  return `List 5 similar crypto coins by on chain metrics from top 300 by marketcap with in depth explainations on why and throw in a comment or two.
+  return `List 5 similar crypto coins by on chain metrics from top 300 by marketcap with in depth explainations on why and throw in a comment for this person: ${username} and make sure to emphasize that it is not ivestment advice.
   Coin: ${capitalizedCoin}
   Names:`;
 }
