@@ -2,13 +2,13 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { Configuration, OpenAIApi } from 'openai';
 
-const configuration = new Configuration({
-  organization: 'org-4P0eYQSWzjqtA0Vl4B6wH2LX',
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
-
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const configuration = new Configuration({
+    organization: 'org-4P0eYQSWzjqtA0Vl4B6wH2LX',
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+
+  const openai = new OpenAIApi(configuration);
   if (!configuration.apiKey) {
     res.status(500).json({
       error: {

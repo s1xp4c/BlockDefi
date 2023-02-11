@@ -24,15 +24,15 @@ const OpenAI: FC<IUserData> = ({ userData }) => {
   const [coinInput, setCoinInput] = useState('');
   const [result, setResult] = useState<string>('');
   const [isFetching, setIsFetching] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
-    if (result) {
-      setIsFetching(false);
-    }
+    setIsFetching(false);
   }, [result]);
 
   async function onSubmit(event: { preventDefault: () => void }) {
     setIsFetching(true);
+    setErrorMessage(null);
     event.preventDefault();
     try {
       const response = await axios.post(
@@ -49,15 +49,18 @@ const OpenAI: FC<IUserData> = ({ userData }) => {
         response.headers['content-type'] !== 'application/json; charset=utf-8'
       ) {
         console.error(`Unexpected content-type: ${response.headers['content-type']}`);
-        throw new Error('Unexpected content-type');
+        setErrorMessage('Unexpected content-type');
+        return;
       }
 
-      const { data } = response;
+      const dataResponse = response.data.result;
 
-      setResult(data.result);
+      setResult(dataResponse);
       setCoinInput('');
     } catch (error) {
       console.error(error);
+      setErrorMessage(error as string | null);
+      console.error(errorMessage);
     }
   }
 
