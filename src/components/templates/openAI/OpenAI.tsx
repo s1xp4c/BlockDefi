@@ -36,7 +36,7 @@ const OpenAI: FC<IUserData> = ({ userData }) => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        'api/generate',
+        'api/auth/generate',
         { coin: coinInput },
         {
           headers: {
@@ -59,7 +59,7 @@ const OpenAI: FC<IUserData> = ({ userData }) => {
       setCoinInput('');
     } catch (error) {
       setErrorMessage(error as string | null);
-      console.log(errorMessage);
+      console.error(errorMessage);
     }
   }
 
