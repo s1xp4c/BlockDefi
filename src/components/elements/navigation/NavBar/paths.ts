@@ -1,7 +1,10 @@
 import { ISubNav } from '../SubNav/SubNav';
 
-// { label: 'Home', href: '/' },
 const NAV_LINKS: ISubNav[] = [
+  {
+    label: 'Home',
+    href: '/',
+  },
   {
     label: 'USER INFO',
     href: '/user',
