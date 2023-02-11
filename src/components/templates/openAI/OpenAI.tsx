@@ -58,9 +58,8 @@ const OpenAI: FC<IUserData> = ({ userData }) => {
       setResult(dataResponse);
       setCoinInput('');
     } catch (error) {
-      console.error(error);
       setErrorMessage(error as string | null);
-      console.error(errorMessage);
+      console.log(errorMessage);
     }
   }
 
