@@ -1,12 +1,12 @@
 import React from 'react';
 import { Box, Center } from '@chakra-ui/react';
-import { AnimateSphere } from '../AnimateSphere';
+import { AnimateSphereSpinner } from '../AnimateSphereSpinner';
 
 const LoadingSpinner = () => {
   return (
     <Center w={'100%'} h={'100%'} bg={'transparent'}>
       <Box>
-        <AnimateSphere width={'30vw'} />
+        <AnimateSphereSpinner width={'30vw'} />
       </Box>
     </Center>
   );

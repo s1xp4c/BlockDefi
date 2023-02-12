@@ -20,7 +20,7 @@ const SideNav = ({ label, href, subLabel, logo }: ISideNav) => {
         display={'block'}
         p={1}
         rounded={'md'}
-        _hover={{ bg: useColorModeValue('blue.600', 'gray.900') }}
+        _hover={{ bg: useColorModeValue('gray.600', 'gray.900') }}
       >
         <Stack direction={'row'} align={'left'}>
           <Illustration logo={logo as Logo} width={46} height={46} id={`${label}-navitem`} />

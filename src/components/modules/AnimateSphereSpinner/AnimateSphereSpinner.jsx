@@ -18,7 +18,7 @@ class AnimateSphere extends Component {
     this.renderer.setSize(width, height);
     this.mount.appendChild(this.renderer.domElement);
     //ADD sphere
-    const geometry = new THREE.SphereGeometry(2, 8, 18);
+    const geometry = new THREE.SphereGeometry(2, 7, 15);
     const material = new THREE.MeshNormalMaterial({
       flatShading: false,
       wireframe: true,
@@ -46,7 +46,7 @@ class AnimateSphere extends Component {
   //   cancelAnimationFrame(this.frameId);
   // };
   animate = () => {
-    this.sphere.rotation.x += 0.005;
+    this.sphere.rotation.x += 0.008;
     this.sphere.rotation.y += 0.01;
     this.renderScene();
     // eslint-disable-next-line no-undef
@@ -60,7 +60,7 @@ class AnimateSphere extends Component {
     return (
       <Box
         id={'myID'}
-        style={{ minWidth: '30vw', minHeight: '30vw' }}
+        style={{ minWidth: '15vw', minHeight: '15vw' }}
         ref={(mount) => {
           this.mount = mount;
         }}

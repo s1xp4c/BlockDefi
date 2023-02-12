@@ -54,8 +54,8 @@ const SnavItem: FC<ISideNav> = ({ label, children, href, subLabel, logo }) => {
                     p={3}
                     rounded={'0'}
                     minW={'xs'}
-                    color={useColorModeValue('gray.900', 'gray.200')}
-                    _hover={{ bg: useColorModeValue('gray.200', 'gray.900') }}
+                    color={useColorModeValue('gray.700', 'gray.200')}
+                    _hover={{ bg: useColorModeValue('gray.200', 'gray.700') }}
                   >
                     <Illustration logo={logo as Logo} width={46} height={46} id={`${label}-snavitem`} />
 
