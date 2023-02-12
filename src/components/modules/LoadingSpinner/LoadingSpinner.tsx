@@ -1,18 +1,13 @@
 import React from 'react';
-import { Center, Spinner } from '@chakra-ui/react';
+import { Box, Center } from '@chakra-ui/react';
+import { AnimateSphere } from '../AnimateSphere';
 
 const LoadingSpinner = () => {
   return (
     <Center w={'100%'} h={'100%'} bg={'transparent'}>
-      <Spinner
-        thickness="4px"
-        speed="0.95s"
-        position={'relative'}
-        size="xl"
-        label={'Loading...'}
-        variant={''}
-        justifySelf={'center'}
-      />
+      <Box>
+        <AnimateSphere width={'30vw'} />
+      </Box>
     </Center>
   );
 };

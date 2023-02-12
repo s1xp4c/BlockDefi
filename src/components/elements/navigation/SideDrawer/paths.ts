@@ -4,41 +4,33 @@ import { ISideNav } from '../SideNav/SideNav';
 const SNAV_LINKS: ISideNav[] = [
   {
     label: 'SWAP',
+    subLabel: 'Swap your coins here ',
     href: '/swap',
-    logo: 'marketplace',
+    logo: 'token',
   },
   {
     label: 'PRESALE',
+    subLabel: 'See current presale stats ',
     href: '/presale',
-    logo: 'chest',
+    logo: 'comingSoon',
   },
   {
     label: 'VOTING',
+    subLabel: 'Make a proposal or vote ',
     href: '/voting',
     logo: 'documentation',
   },
   {
     label: 'OPENAI',
+    subLabel: 'Ask AI about your crypto ',
     href: '/openai',
     logo: 'wizard',
   },
   {
     label: 'CHARTS',
+    subLabel: 'See charts and ticker here ',
     href: '/charts',
-    children: [
-      {
-        label: 'ERCTEST',
-        subLabel: 'Get your ERC Stuff',
-        href: '/balances/erc20',
-        logo: 'token',
-      },
-      {
-        label: 'CHARTS',
-        subLabel: 'Get your Charts',
-        href: '/charts',
-        logo: 'chest',
-      },
-    ],
+    logo: 'chest',
   },
 ];
 

@@ -32,10 +32,10 @@ const Home: FC<IUserData> = ({ userData }) => {
             {userData.username}
           </Heading>
           <Heading size="sm" marginBottom={3} textAlign={'center'}>
-            {'You know the drill . . . DeFi on the left and your data on the right'}
+            {'I see you´ve already connected, so let´s get started!'}
           </Heading>
           <Heading size="sm" marginBottom={1} textAlign={'center'}>
-            {'I see you´ve already connected, so let´s get started!'}
+            {'You know the drill . . . DeFi on the left and your data on the right'}
           </Heading>
 
           <Box display={'flex'} justifyContent={'center'}>

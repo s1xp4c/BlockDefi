@@ -11,7 +11,7 @@ import {
   VStack,
   Menu,
   MenuButton,
-  StackDivider,
+  useColorMode,
 } from '@chakra-ui/react';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { SnavItem } from '../SnavItem';
@@ -31,7 +31,7 @@ const SideDrawer = () => {
           as={IconButton}
           icon={<HamburgerIcon />}
           variant=""
-          colorScheme="teal"
+          colorScheme={useColorMode}
           aria-label="Options"
           fontSize="35px"
           transition={'all .3s ease'}
@@ -41,12 +41,12 @@ const SideDrawer = () => {
         />
         <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
           <DrawerOverlay />
-          <DrawerContent>
+          <DrawerContent bgGradient="linear(to-l, transparent, transparent, gray.900)">
             <DrawerCloseButton />
             <DrawerHeader>DEFI OPTIONS</DrawerHeader>
 
             <DrawerBody>
-              <VStack gap={'0px'} display={'flex'} align={'stretch'} divider={<StackDivider borderColor="gray.100" />}>
+              <VStack gap={0} display={'flex'} align={'center'}>
                 {SNAV_LINKS.map((link) => (
                   <SnavItem key={`-link-${link.label}`} {...link} />
                 ))}

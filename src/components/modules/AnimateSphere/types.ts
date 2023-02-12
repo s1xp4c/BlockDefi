@@ -1,7 +1,8 @@
-type TColorData = {
-  color: string | string;
+type TSizeData = {
+  width: string | string;
+  height: string | string;
 };
 
-export interface IColorData {
-  color: TColorData[];
+export interface ISizeData {
+  sizeData: TSizeData[];
 }
