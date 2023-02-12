@@ -1,9 +1,21 @@
-type TSwapperData = {
-  address: string | string;
-  provider: string | string;
-  otherProp?: string | unknown;
+type TUserData = {
+  address: string;
+  profileId: string;
+  username?: string;
 };
 
-export interface ISwapper {
-  swapper: TSwapperData[];
+export interface IUserData {
+  userData: TUserData;
+}
+
+type TUniData = {
+  UNI_SEC_TOKEN: string;
+  UNI_TOKEN_LIST: string;
+  UNI_NATIVE: string;
+  UNI_FEE_ADDRESS?: string;
+  UNI_FEE?: number;
+};
+
+export interface IUniData {
+  uniData: TUniData;
 }

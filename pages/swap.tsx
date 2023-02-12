@@ -6,8 +6,11 @@ import Moralis from 'moralis';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { LoadingSpinner } from 'components/modules';
+import connectDB from '../lib/connectDB';
+import Users from '../lib/userSchema';
+import { IUserData, IUniData } from './../src/components/templates/swap/types';
 
-const swapPage: NextPage = (props) => {
+const swapPage: NextPage<IUserData, IUniData> = (props) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -24,7 +27,7 @@ const swapPage: NextPage = (props) => {
     };
   }, [router.events]);
 
-  return <Default pageName="Swap">{loading ? <LoadingSpinner /> : <Swap swapper={[]} {...props} />}</Default>;
+  return <Default pageName="Swap">{loading ? <LoadingSpinner /> : <Swap {...props} />}</Default>;
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -37,16 +40,33 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (!session?.user.address) {
     return { props: { error: 'Connect your wallet first' } };
   }
-
   const userB = {
     address: session?.user.address,
   };
 
-  const swapAddress = { address: userB?.address };
+  await connectDB();
+
+  const userM = await Users.findOne({
+    profileId: session?.user.profileId,
+  }).lean();
+
+  const userData = {
+    address: userB?.address,
+    profileId: userM?.profileId,
+    username: userM?.username,
+  };
+  const uniData = {
+    UNI_TOKEN_LIST: process.env.UNISWAP_TOKEN_LIST,
+    UNI_NATIVE: process.env.NATIVE,
+    UNI_FEE_ADDRESS: process.env.UNI_FEE_ADDRESS,
+    UNI_FEE: process.env.UNI_FEE,
+    UNI_SEC: process.env.UNI_SEC_TOKEN,
+  };
 
   return {
     props: {
-      swapper: JSON.parse(JSON.stringify(swapAddress)),
+      userData: JSON.parse(JSON.stringify(userData)),
+      uniData: JSON.parse(JSON.stringify(uniData)),
     },
   };
 };

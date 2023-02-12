@@ -1,11 +1,11 @@
 import { Box, Heading, useColorModeValue, Flex } from '@chakra-ui/react';
-import { ISwapper } from './types';
+import { IUserData, IUniData } from './types';
 import { SwapWidget } from '@uniswap/widgets';
 import '@uniswap/widgets/fonts.css';
 import { extendTheme } from '@chakra-ui/react';
 import { useEffect } from 'react';
 
-function Swap(swapper: ISwapper) {
+function Swap({ userData }: IUserData, { uniData }: IUniData) {
   const hoverTrColor = useColorModeValue('gray.100', 'gray.700');
   const theme = extendTheme({
     primary: '#EDF2F7',
@@ -20,12 +20,15 @@ function Swap(swapper: ISwapper) {
     borderRadius: 0.8,
   });
 
-  useEffect(() => console.log('swapper: ', swapper), [swapper]);
+  useEffect(() => console.log('UserData: ', userData), [userData]);
+  useEffect(() => console.log('uniData: ', uniData), [uniData]);
 
-  const UNISWAP_TOKEN_LIST = 'https://gateway.ipfs.io/ipns/tokens.uniswap.org';
-  const NATIVE = 'NATIVE';
-  const BACD2 = '0x66eb10c9B80fC52401384285f5Ecc18C0b924bBd';
-  const cFeeAddress = '0x6004539434CbCFF73506ebEa9FB6Cd841c307a8f';
+  //https://github.com/Uniswap/interface/blob/main/src/constants/lists.ts
+  const UNI_TOKEN_LIST = uniData?.UNI_TOKEN_LIST;
+  const UNI_NATIVE = uniData?.UNI_NATIVE;
+  const UNI_SEC_TOKEN = uniData?.UNI_SEC_TOKEN;
+  const UNI_FEE_ADDRESS = uniData?.UNI_FEE_ADDRESS;
+  const UNI_FEE = uniData?.UNI_FEE;
 
   return (
     <>
@@ -46,11 +49,11 @@ function Swap(swapper: ISwapper) {
             <SwapWidget
               width={'360px'}
               theme={theme}
-              tokenList={UNISWAP_TOKEN_LIST}
-              defaultInputTokenAddress={NATIVE}
-              defaultOutputTokenAddress={BACD2}
-              convenienceFee={5}
-              convenienceFeeRecipient={cFeeAddress}
+              tokenList={UNI_TOKEN_LIST}
+              defaultInputTokenAddress={UNI_NATIVE}
+              defaultOutputTokenAddress={UNI_SEC_TOKEN}
+              convenienceFee={UNI_FEE}
+              convenienceFeeRecipient={UNI_FEE_ADDRESS}
             />
           </Box>
         </Flex>
