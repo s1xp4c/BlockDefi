@@ -24,7 +24,7 @@ function Swap({ userData }: IUserData, { uniData }: IUniData) {
   useEffect(() => console.log('uniData: ', uniData), [uniData]);
 
   //https://github.com/Uniswap/interface/blob/main/src/constants/lists.ts
-  const UNI_TOKEN_LIST = uniData?.UNI_TOKEN_LIST;
+  const UNI_TOKEN_LIST = 'https://extendedtokens.uniswap.org/';
   const UNI_NATIVE = uniData?.UNI_NATIVE;
   const UNI_SEC_TOKEN = uniData?.UNI_SEC_TOKEN;
   const UNI_FEE_ADDRESS = uniData?.UNI_FEE_ADDRESS;
