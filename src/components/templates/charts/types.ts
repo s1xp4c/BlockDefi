@@ -1,8 +1,9 @@
-type TChartsData = {
-  address: string | string;
-  otherProp?: string | unknown;
+type TUserData = {
+  address: string;
+  profileId: string;
+  username?: string;
 };
 
-export interface ICharts {
-  chartsAddress: TChartsData[];
+export interface IUserData {
+  userData: TUserData;
 }

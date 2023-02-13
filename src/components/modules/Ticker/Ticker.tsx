@@ -1,6 +1,6 @@
 import React from 'react';
 import { TickerTape } from 'react-ts-tradingview-widgets';
-import { Box } from '@chakra-ui/react';
+import { Box, useColorModeValue } from '@chakra-ui/react';
 
 interface TradingViewWidgetProps {
   symbols: [
@@ -25,7 +25,7 @@ interface TradingViewWidgetProps {
       title: 'Solana';
     },
   ];
-  colorTheme: 'dark';
+  colorTheme: string;
   isTransparent?: boolean;
   showSymbolLogo?: boolean;
   locale?: string;
@@ -33,10 +33,10 @@ interface TradingViewWidgetProps {
 
 const Ticker: React.FC<TradingViewWidgetProps> = (props) => {
   return (
-    <Box>
+    <Box boxShadow={'xl'} p={3} mb={3} rounded={'xl'}>
       <TickerTape
         showSymbolLogo={true}
-        colorTheme={props.colorTheme}
+        colorTheme={useColorModeValue('light', 'dark')}
         locale="en"
         symbols={props.symbols}
         isTransparent={props.isTransparent}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { SymbolOverview } from 'react-ts-tradingview-widgets';
-import { Box } from '@chakra-ui/react';
+import { Box, useColorModeValue } from '@chakra-ui/react';
 
 interface TradingViewWidgetProps {
   symbols: [
@@ -10,7 +10,7 @@ interface TradingViewWidgetProps {
     ['Solana', 'SOL'],
     ['FREEcoin', 'GATEIO:FREEUSDT|1D'],
   ];
-  colorTheme: 'dark';
+  colorTheme: string;
   isTransparent?: boolean;
 }
 
@@ -18,7 +18,7 @@ const ChartCard: React.FC<TradingViewWidgetProps> = (props) => {
   return (
     <Box h={'xl'}>
       <SymbolOverview
-        colorTheme={props.colorTheme}
+        colorTheme={useColorModeValue('light', 'dark')}
         autosize
         chartType="candlesticks"
         downColor="#800080"

@@ -1,13 +1,13 @@
 import { Box, Heading, useColorModeValue } from '@chakra-ui/react';
-import { ICharts } from './types';
+import { IUserData } from './types';
 import { Ticker } from '../../modules/Ticker';
 import { ChartCard } from '../../modules/ChartCard';
-import { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 
-function Charts(chartsAddress: ICharts) {
+const Charts: FC<IUserData> = ({ userData }) => {
   const hoverTrColor = useColorModeValue('gray.100', 'gray.700');
 
-  useEffect(() => console.log('ChartsAddress: ', chartsAddress), [chartsAddress]);
+  useEffect(() => console.log('ChartsAddress: ', userData), [userData]);
 
   return (
     <>
@@ -36,9 +36,16 @@ function Charts(chartsAddress: ICharts) {
         ]}
         colorTheme={'dark'}
       />
-      <Heading size="lg" marginBottom={6}>
-        Charts
-      </Heading>
+      {!userData?.profileId ? (
+        <Heading size="lg" marginBottom={6}>
+          {'Charts'}
+        </Heading>
+      ) : (
+        <Heading size="lg" marginBottom={6}>
+          {'Your Charts for you '}
+          {userData.username}
+        </Heading>
+      )}
       <Box border="2px" borderColor={hoverTrColor} borderRadius="xl" padding="24px 18px" userSelect={'none'}>
         <ChartCard
           symbols={[
@@ -53,6 +60,6 @@ function Charts(chartsAddress: ICharts) {
       </Box>
     </>
   );
-}
+};
 
 export default Charts;

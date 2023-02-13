@@ -8,9 +8,9 @@ import { useRouter } from 'next/router';
 import { LoadingSpinner } from 'components/modules';
 import connectDB from '../lib/connectDB';
 import Users from '../lib/userSchema';
-import { IUserData, IUniData } from './../src/components/templates/swap/types';
+import { ISwapData } from './../src/components/templates/swap/types';
 
-const swapPage: NextPage<IUserData, IUniData> = (props) => {
+const swapPage: NextPage<ISwapData> = (props) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 

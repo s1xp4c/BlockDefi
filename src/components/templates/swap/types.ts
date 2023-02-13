@@ -16,6 +16,7 @@ type TUniData = {
   UNI_FEE?: number;
 };
 
-export interface IUniData {
+export interface ISwapData {
   uniData: TUniData;
+  userData: TUserData;
 }

@@ -23,7 +23,7 @@ function WelcomeModal() {
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay bg="none" backdropFilter="auto" backdropBlur="2px" />
         <ModalContent>
-          <ModalHeader>Welcome to BACD Finance</ModalHeader>
+          <ModalHeader>{'Welcome to BACD Finance'}</ModalHeader>
           <ModalCloseButton />
           <ModalBody marginBottom={'4'}>
             <Text>

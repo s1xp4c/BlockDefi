@@ -59,7 +59,7 @@ class AnimateSphere extends Component {
   render() {
     return (
       <Box
-        id={'myID'}
+        id={'sphere'}
         style={{ minWidth: '30vw', minHeight: '30vw' }}
         ref={(mount) => {
           this.mount = mount;

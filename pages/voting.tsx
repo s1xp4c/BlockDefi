@@ -1,14 +1,17 @@
 import { Default } from 'components/layouts/Default';
 import { GetServerSideProps, NextPage } from 'next';
 import { getSession } from 'next-auth/react';
-import { Voting } from 'components/templates/voting';
+import { IUserData } from 'components/templates/voting/types';
+import { Voting } from 'components/templates/voting/';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { LoadingSpinner } from 'components/modules';
 
 import Moralis from 'moralis';
+import connectDB from '../lib/connectDB';
+import Users from '../lib/userSchema';
 
-const votingPage: NextPage = (props) => {
+const votingPage: NextPage<IUserData> = (props) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -25,7 +28,7 @@ const votingPage: NextPage = (props) => {
     };
   }, [router.events]);
 
-  return <Default pageName="Voting">{loading ? <LoadingSpinner /> : <Voting voting={[]} {...props} />}</Default>;
+  return <Default pageName="Voting">{loading ? <LoadingSpinner /> : <Voting {...props} />}</Default>;
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -43,11 +46,21 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     address: session?.user.address,
   };
 
-  const votingAddress = { address: userB?.address };
+  await connectDB();
+
+  const userM = await Users.findOne({
+    profileId: session?.user.profileId,
+  }).lean();
+
+  const userData = {
+    address: userB?.address,
+    profileId: userM?.profileId,
+    username: userM?.username,
+  };
 
   return {
     props: {
-      voting: JSON.parse(JSON.stringify(votingAddress)),
+      userData: JSON.parse(JSON.stringify(userData)),
     },
   };
 };

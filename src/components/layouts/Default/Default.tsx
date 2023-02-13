@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react';
-import { Container } from '@chakra-ui/react';
+import { Box, Container } from '@chakra-ui/react';
 import { Footer, Header } from 'components/modules';
 import Head from 'next/head';
 
@@ -15,8 +15,10 @@ const Default: FC<{ children: ReactNode; pageName: string }> = ({ children, page
       <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
       <meta name="msapplication-TileColor" content="#603cba" />
     </Head>
-    <Header />
-    <Container maxW="container.lg" p={3} marginTop={5} as="main" minH="70vh">
+    <Box boxShadow={'xl'}>
+      <Header />
+    </Box>
+    <Container maxW="container.lg" p={3} marginTop={5} as="main" minH="70vh" boxShadow={'xl'}>
       {children}
     </Container>
     <Footer />

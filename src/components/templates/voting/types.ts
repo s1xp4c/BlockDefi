@@ -1,8 +1,9 @@
-type TVotingData = {
-  address: string | string;
-  otherProp?: string | unknown;
+type TUserData = {
+  address: string;
+  profileId: string;
+  username?: string;
 };
 
-export interface IVoting {
-  voting: TVotingData[];
+export interface IUserData {
+  userData: TUserData;
 }

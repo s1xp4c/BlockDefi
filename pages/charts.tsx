@@ -1,13 +1,16 @@
 import { Default } from 'components/layouts/Default';
 import { GetServerSideProps, NextPage } from 'next';
 import { getSession } from 'next-auth/react';
+import { IUserData } from 'components/templates/charts/types';
 import { Charts } from 'components/templates/charts';
 import Moralis from 'moralis';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { LoadingSpinner } from 'components/modules';
+import connectDB from '../lib/connectDB';
+import Users from '../lib/userSchema';
 
-const chartsPage: NextPage = (props) => {
+const chartsPage: NextPage<IUserData> = (props) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -24,7 +27,7 @@ const chartsPage: NextPage = (props) => {
     };
   }, [router.events]);
 
-  return <Default pageName="Charts">{loading ? <LoadingSpinner /> : <Charts chartsAddress={[]} {...props} />}</Default>;
+  return <Default pageName="Charts">{loading ? <LoadingSpinner /> : <Charts {...props} />}</Default>;
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -42,11 +45,21 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     address: session?.user.address,
   };
 
-  const chartAddress = { address: userB?.address };
+  await connectDB();
+
+  const userM = await Users.findOne({
+    profileId: session?.user.profileId,
+  }).lean();
+
+  const userData = {
+    address: userB?.address,
+    profileId: userM?.profileId,
+    username: userM?.username,
+  };
 
   return {
     props: {
-      chartAddress: JSON.parse(JSON.stringify(chartAddress)),
+      userData: JSON.parse(JSON.stringify(userData)),
     },
   };
 };

@@ -1,20 +1,27 @@
 import { Box, Heading, useColorModeValue } from '@chakra-ui/react';
-import { IVoting } from './types';
+import { IUserData } from './types';
 
-import { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { VotingModal } from 'components/modules/VotingModal';
 
-function Voting(voting: IVoting) {
+const Voting: FC<IUserData> = ({ userData }) => {
   const hoverTrColor = useColorModeValue('gray.100', 'gray.700');
 
-  useEffect(() => console.log('voting: ', voting), [voting]);
+  useEffect(() => console.log('voting: ', userData), [userData]);
 
   return (
     <>
       <VotingModal />
-      <Heading size="lg" marginBottom={6}>
-        Decentralized Voting
-      </Heading>
+      {!userData?.profileId ? (
+        <Heading size="lg" marginBottom={6}>
+          {'Decentralized Voting is ready'}
+        </Heading>
+      ) : (
+        <Heading size="lg" marginBottom={6}>
+          {'Decentralized Voting is ready for you '}
+          {userData.username}
+        </Heading>
+      )}
       <Heading size="xs" marginBottom={6}>
         Users must have 1000 BACD Tokens in their connected wallet to make a proposal and 100 BACD tokens to cast a
         vote.
@@ -33,6 +40,6 @@ function Voting(voting: IVoting) {
       </Box>
     </>
   );
-}
+};
 
 export default Voting;

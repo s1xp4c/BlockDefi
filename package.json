@@ -55,7 +55,8 @@
     "@types/three": "^0.149.0",
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "@typescript-eslint/parser": "^5.33.1",
-    "prettier": "2.7.1"
+    "prettier": "2.7.1",
+    "jotai-devtools": "1.31.1"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"

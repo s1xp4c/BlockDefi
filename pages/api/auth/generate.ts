@@ -47,7 +47,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 function generatePrompt(coin: string, username: string): string {
   const capitalizedCoin = coin[0].toUpperCase() + coin.slice(1).toLowerCase();
-  return `List 5 similar crypto coins by on chain metrics from top 300 by marketcap with in depth explainations on why and throw in a comment for this person: ${username} and make sure to emphasize that it is not ivestment advice.
+  return `List 5 similar crypto coins by on chain metrics from top 300 by marketcap with in depth explainations on why. Throw in a comment for this person: ${username} and make sure to emphasize that it is not ivestment advice. Try not to be generic when explaining each coin.
   Coin: ${capitalizedCoin}
   Names:`;
 }
