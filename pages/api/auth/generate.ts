@@ -1,8 +1,15 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-
 import { Configuration, OpenAIApi } from 'openai';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async (
+  req: { body: { username: string; coin: string } },
+  res: {
+    status: (arg0: number) => {
+      (): string;
+      new (): string;
+      json: { (arg0: { error?: unknown; result?: string | undefined }): void; new (): string };
+    };
+  },
+) => {
   const configuration = new Configuration({
     organization: process.env.OPENAI_ORG,
     apiKey: process.env.OPENAI_API_KEY,
@@ -43,7 +50,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.status(500).json({ error });
     console.error(error);
   }
-}
+};
 
 function generatePrompt(coin: string, username: string): string {
   const capitalizedCoin = coin[0].toUpperCase() + coin.slice(1).toLowerCase();
