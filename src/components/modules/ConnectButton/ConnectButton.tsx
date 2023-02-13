@@ -2,10 +2,11 @@ import { InjectedConnector } from 'wagmi/connectors/injected';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useAccount, useConnect, useDisconnect, useSignMessage } from 'wagmi';
 import apiPost from 'utils/apiPost';
-import { Button, Text, HStack, Avatar, useToast, Box } from '@chakra-ui/react';
+import { Button, Text, HStack, useToast, Box } from '@chakra-ui/react';
 import { getEllipsisTxt } from 'utils/format';
 import axios from 'axios';
 import { useState } from 'react';
+import { MetaMaskAvatar } from '../../elements/MetaMaskAvatar/';
 
 const ConnectButton = () => {
   const { connectAsync } = useConnect({ connector: new InjectedConnector() });
@@ -59,7 +60,9 @@ const ConnectButton = () => {
             </Button>
           ) : (
             <>
-              <Avatar size="xs" />
+              <Box p={1}>
+                <MetaMaskAvatar account={data.user.address} />
+              </Box>
               <Text fontWeight="medium">{getEllipsisTxt(data.user.address)}</Text>
             </>
           )}

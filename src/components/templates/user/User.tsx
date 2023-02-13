@@ -31,6 +31,7 @@ import { EditIcon, CopyIcon, EmailIcon, PhoneIcon } from '@chakra-ui/icons';
 import { getEllipsisTxt } from 'utils/format';
 import ultralightCopy from 'copy-to-clipboard-ultralight';
 import { IUserData } from './types';
+import { MetaMaskAvatar } from 'components/elements';
 
 const User: FC<IUserData> = ({ userData }) => {
   const hoverTrColor = useColorModeValue('gray.100', 'gray.700');
@@ -130,8 +131,8 @@ const User: FC<IUserData> = ({ userData }) => {
                 <Tr>
                   <Th>User ID:</Th>
                   <Th textAlign={'right'}>
-                    <Box as={motion.div} animation={animation}>
-                      <Avatar></Avatar>
+                    <Box as={motion.div} animation={animation} p={1}>
+                      <MetaMaskAvatar account={userData.address} />
                     </Box>
                   </Th>
                 </Tr>
