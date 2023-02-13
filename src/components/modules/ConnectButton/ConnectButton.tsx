@@ -51,7 +51,7 @@ const ConnectButton = () => {
 
   if (data?.user) {
     return (
-      <Box onMouseOver={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+      <Box onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
         <HStack onClick={handleDisconnect} cursor={'pointer'}>
           {isHovered ? (
             <Button size="sm" colorScheme="red">
