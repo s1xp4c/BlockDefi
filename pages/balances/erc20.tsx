@@ -8,6 +8,7 @@ import { ERC20Balances, IERC20Balances } from 'components/templates/balances/ERC
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { LoadingSpinner } from 'components/modules';
+import { EvmChain } from '@moralisweb3/common-evm-utils';
 
 const ERC20: NextPage<IERC20Balances> = (props) => {
   const router = useRouter();
@@ -40,6 +41,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     address: session?.user.address,
     chain: process.env.APP_CHAIN_ID,
   });
+  const chain = EvmChain.POLYGON;
+  const native = await Moralis.EvmApi.balance.getNativeBalance({
+    address: session?.user.address,
+    chain,
+  });
+  console.log(native.toJSON());
 
   const tokensWithLogosAdded = balances.toJSON().map((balance) => ({
     ...balance,

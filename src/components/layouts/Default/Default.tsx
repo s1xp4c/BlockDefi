@@ -7,6 +7,9 @@ const Default: FC<{ children: ReactNode; pageName: string }> = ({ children, page
   <>
     <Head>
       <title>{`${pageName} | BACD FINANCE`}</title>
+      <meta charSet="UTF-8"></meta>
+      <meta name="author" content="s1xp4c @ Blockstarter"></meta>
+      <meta name="description" content="BlockDefi web3 Blochain Content"></meta>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
       <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />

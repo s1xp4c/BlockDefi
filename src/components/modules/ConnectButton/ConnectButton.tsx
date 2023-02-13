@@ -55,12 +55,17 @@ const ConnectButton = () => {
       <Box onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
         <HStack onClick={handleDisconnect} cursor={'pointer'}>
           {isHovered ? (
-            <Button size="sm" colorScheme="red">
-              {'Disconnect Wallet'}
-            </Button>
-          ) : (
             <>
               <Box p={1}>
+                <MetaMaskAvatar account={data.user.address} />
+              </Box>
+              <Button size="sm" colorScheme="red">
+                {'Disconnect Wallet'}
+              </Button>
+            </>
+          ) : (
+            <>
+              <Box px={1}>
                 <MetaMaskAvatar account={data.user.address} />
               </Box>
               <Text fontWeight="medium">{getEllipsisTxt(data.user.address)}</Text>

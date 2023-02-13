@@ -33,6 +33,14 @@ const Charts: FC<IUserData> = ({ userData }) => {
             title: 'Solana',
             proName: 'COINBASE:SOLUSD',
           },
+          {
+            title: 'The Graph',
+            proName: 'COINBASE:GRTUSD',
+          },
+          {
+            title: 'Loopring',
+            proName: 'COINBASE:LRCUSD',
+          },
         ]}
         colorTheme={'dark'}
       />
@@ -42,18 +50,19 @@ const Charts: FC<IUserData> = ({ userData }) => {
         </Heading>
       ) : (
         <Heading size="lg" marginBottom={6}>
-          {'Your Charts for you '}
+          {'Your Charts '}
           {userData.username}
         </Heading>
       )}
       <Box border="2px" borderColor={hoverTrColor} borderRadius="xl" padding="24px 18px" userSelect={'none'}>
         <ChartCard
           symbols={[
-            ['Bitcoin', 'BTC'],
-            ['Ethereum', 'ETH'],
+            ['Bitcoin', 'BTCUSD'],
+            ['Ethereum', 'ETHUSD'],
             ['BACDv2', 'UNISWAP3ETH:BACD2USDC|1D'],
-            ['Solana', 'SOL'],
+            ['Solana', 'SOLUSD'],
             ['FREEcoin', 'GATEIO:FREEUSDT|1D'],
+            ['dYdX', 'DYDXUSD'],
           ]}
           colorTheme={'dark'}
         />

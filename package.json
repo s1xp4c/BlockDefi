@@ -1,8 +1,8 @@
 {
-  "name": "bacd-finance",
-  "version": "2.0.6",
+  "name": "blockdefi",
+  "version": "3.0.0",
   "private": true,
-  "homepage": "https://github.com/s1xp4c/bacd_finance",
+  "homepage": "https://blockstarter.info",
   "email": "six@bacd.io",
   "scripts": {
     "dev": "next dev",

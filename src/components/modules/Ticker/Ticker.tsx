@@ -24,6 +24,14 @@ interface TradingViewWidgetProps {
       proName: 'COINBASE:SOLUSD';
       title: 'Solana';
     },
+    {
+      proName: 'COINBASE:GRTUSD';
+      title: 'The Graph';
+    },
+    {
+      proName: 'COINBASE:LRCUSD';
+      title: 'Loopring';
+    },
   ];
   colorTheme: string;
   isTransparent?: boolean;

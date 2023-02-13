@@ -39,6 +39,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     address: session?.user.address,
     chain: process.env.APP_CHAIN_ID,
   });
+  console.log(transfers.toJSON());
 
   return {
     props: {

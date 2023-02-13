@@ -12,7 +12,7 @@ export type TUserData = {
   bio: string;
   username: string;
   email: string;
-  phone: number;
+  phone: number | string;
 };
 
 export interface ISession {

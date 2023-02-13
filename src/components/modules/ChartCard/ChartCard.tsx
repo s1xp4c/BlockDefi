@@ -4,11 +4,12 @@ import { Box, useColorModeValue } from '@chakra-ui/react';
 
 interface TradingViewWidgetProps {
   symbols: [
-    ['Bitcoin', 'BTC'],
-    ['Ethereum', 'ETH'],
+    ['Bitcoin', 'BTCUSD'],
+    ['Ethereum', 'ETHUSD'],
     ['BACDv2', 'UNISWAP3ETH:BACD2USDC|1D'],
-    ['Solana', 'SOL'],
+    ['Solana', 'SOLUSD'],
     ['FREEcoin', 'GATEIO:FREEUSDT|1D'],
+    ['dYdX', 'DYDXUSD'],
   ];
   colorTheme: string;
   isTransparent?: boolean;

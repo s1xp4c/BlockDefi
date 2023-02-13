@@ -4,7 +4,7 @@ type TUserData = {
   bio?: string;
   username?: string;
   email?: string;
-  phone?: string;
+  phone?: number | string;
 };
 
 export interface IUserData {
