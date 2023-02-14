@@ -12,13 +12,12 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { QuestionIcon, WarningIcon, WarningTwoIcon } from '@chakra-ui/icons';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { ConnectButton } from '../ConnectButton';
 import React from 'react';
 
 function WelcomeModal() {
   const { isOpen, onClose, onOpen } = useDisclosure();
-  const initialRef = useRef<null>(null);
 
   useEffect(() => {
     onOpen();
@@ -26,13 +25,13 @@ function WelcomeModal() {
 
   return (
     <>
-      <Modal onClose={onClose} isOpen={isOpen} isCentered initialFocusRef={initialRef}>
+      <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay bg="none" backdropFilter="auto" backdropBlur="2px" />
         <ModalContent>
           <ModalHeader textAlign={'center'} py={6} pl={1}>
             {'Welcome to BACD Finance'}
           </ModalHeader>
-          <ModalCloseButton ref={initialRef} />
+          <ModalCloseButton />
           <ModalBody marginBottom={'4'}>
             <Box display={'flex'} pb={4}>
               <Box textAlign={'center'}>
