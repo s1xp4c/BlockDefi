@@ -36,7 +36,7 @@ const OpenAI: FC<IUserData> = ({ userData }) => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        'api/auth/generate',
+        'api/generate',
         { coin: coinInput, username: userData?.username },
         {
           headers: {
@@ -122,9 +122,20 @@ const OpenAI: FC<IUserData> = ({ userData }) => {
               value={coinInput}
               onChange={(e) => setCoinInput(e.target.value)}
             />
-            <Button marginBottom={6} type="submit" value="Generate coins">
-              {'GENERATE COIN EXPLANATIONS'}
-            </Button>
+            {isFetching === true ? (
+              <>
+                <Box>
+                  {'Please do NOT refresh the page - I´m working hard at generating your answer '}
+                  {userData.username}
+                </Box>
+              </>
+            ) : (
+              <>
+                <Button marginBottom={6} type="submit" value="Generate coins">
+                  {'GENERATE COIN EXPLANATIONS'}
+                </Button>
+              </>
+            )}
           </form>
           <>
             <style>
@@ -134,7 +145,7 @@ const OpenAI: FC<IUserData> = ({ userData }) => {
             </style>
             {isFetching === true ? (
               <>
-                <Box>
+                <Box pb={2}>
                   <LoadingSpinner />
                 </Box>
                 <Box w={'100%'}>

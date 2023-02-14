@@ -54,7 +54,7 @@ export default async (
 
 function generatePrompt(coin: string, username: string): string {
   const capitalizedCoin = coin[0].toUpperCase() + coin.slice(1).toLowerCase();
-  return `List 5 similar crypto coins by on chain metrics from top 300 by marketcap with in depth explainations on why. Throw in a comment for this person: ${username} and make sure to emphasize that it is not ivestment advice. Try not to be generic when explaining each coin.
+  return `List 5 similar crypto coins by on chain metrics from top 300 by marketcap with in depth explainations on why and try not to be generic when explaining each coin. Add a comment at the end for this person: "${username}" about crypto in general, make the comment witty and make sure to emphasize that it is not ivestment advice. Add an extra line off space between each answer. 
   Coin: ${capitalizedCoin}
-  Names:`;
+  Name:`;
 }
