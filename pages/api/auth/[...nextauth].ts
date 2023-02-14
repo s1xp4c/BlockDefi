@@ -25,14 +25,14 @@ export default NextAuth({
       name: 'MoralisAuth',
       credentials: {
         message: {
-          label: 'Message',
+          label: 'You accept the following',
           type: 'text',
-          placeholder: '0x0',
+          placeholder: 'Please contact support',
         },
         signature: {
           label: 'Signature',
           type: 'text',
-          placeholder: '0x0',
+          placeholder: 'Connection Error!',
         },
       },
       async authorize(credentials) {
