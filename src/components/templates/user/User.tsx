@@ -21,12 +21,11 @@ import {
   useBoolean,
   Textarea,
   useToast,
-  keyframes,
   InputLeftAddon,
   InputGroup,
   Stack,
 } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
+
 import { EditIcon, CopyIcon, EmailIcon, PhoneIcon } from '@chakra-ui/icons';
 import { getEllipsisTxt } from 'utils/format';
 import ultralightCopy from 'copy-to-clipboard-ultralight';
@@ -42,13 +41,6 @@ const User: FC<IUserData> = ({ userData }) => {
   const [inputValueBio, setInputValueBio] = useState('');
   const [inputValueEmail, setInputValueEmail] = useState('');
   const [inputValuePhone, setInputValuePhone] = useState('');
-
-  const animationKeyframes = keyframes`
-  0% { transform: scale(1) rotate(0); border-radius: 20%; }
-  100% { transform: scale(0) rotate(0); border-radius: 20%; }
-`;
-  const animation = `${animationKeyframes} 4s ease-out `;
-
   const toast = useToast();
 
   const copyToClipboard = (e: string | undefined) => {
@@ -398,7 +390,7 @@ const User: FC<IUserData> = ({ userData }) => {
                 <Tr>
                   <Th>wallet address:</Th>
                   <Th textAlign={'right'}>
-                    <Box as={motion.div} animation={animation} px={1}>
+                    <Box px={1}>
                       <MetaMaskAvatar account={userData.address} />
                     </Box>
                   </Th>
