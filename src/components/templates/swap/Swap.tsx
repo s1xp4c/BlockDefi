@@ -2,11 +2,18 @@ import { Box, Heading, useColorModeValue, Flex } from '@chakra-ui/react';
 import { SwapWidget } from '@uniswap/widgets';
 import '@uniswap/widgets/fonts.css';
 import { extendTheme } from '@chakra-ui/react';
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { ISwapData } from '../swap';
 
 const Swap: FC<ISwapData> = (props) => {
   const hoverTrColor = useColorModeValue('gray.100', 'gray.700');
+
+  const [UNI_TOKEN_LIST, setUNI_TOKEN_LIST] = useState<string>();
+  const [UNI_NATIVE, setUNI_NATIVE] = useState<string>();
+  const [UNI_FEE_ADDRESS, setUNI_FEE_ADDRESS] = useState<string>();
+  const [UNI_FEE, setUNI_FEE] = useState<number>(0);
+  const [UNI_SEC_TOKEN, setUNI_SEC_TOKEN] = useState<string>();
+
   const darkTheme = extendTheme({
     primary: '#EDF2F7',
     secondary: '#CBD5E0',
@@ -33,20 +40,16 @@ const Swap: FC<ISwapData> = (props) => {
     backgroundColor: '#B0B0B0',
   });
 
-  useEffect(() => console.log('UserData: ', props.userData), [props.userData]);
+  useEffect(() => {
+    setUNI_TOKEN_LIST(props.uniData?.UNI_TOKEN_LIST);
+    setUNI_NATIVE(props.uniData?.UNI_NATIVE);
+    setUNI_SEC_TOKEN(props.uniData?.UNI_SEC_TOKEN);
+    setUNI_FEE_ADDRESS(props.uniData?.UNI_FEE_ADDRESS);
+    setUNI_FEE(props.uniData?.UNI_FEE);
+  });
   useEffect(() => console.log('uniData: ', props.uniData), [props.uniData]);
 
   //https://github.com/Uniswap/interface/blob/main/src/constants/lists.ts
-  const UNI_TOKEN_LIST = props.uniData?.UNI_TOKEN_LIST;
-  const UNI_NATIVE = props.uniData?.UNI_NATIVE;
-  const UNI_SEC_TOKEN = props.uniData?.UNI_SEC_TOKEN;
-  const UNI_FEE_ADDRESS = props.uniData?.UNI_FEE_ADDRESS;
-  const UNI_FEE = props.uniData?.UNI_FEE;
-
-  console.log(UNI_NATIVE);
-  console.log(UNI_SEC_TOKEN);
-  console.log(UNI_FEE);
-  console.log(UNI_FEE_ADDRESS);
 
   return (
     <>

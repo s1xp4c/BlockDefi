@@ -35,20 +35,6 @@ function WelcomeModal() {
           <ModalBody marginBottom={'4'}>
             <Box display={'flex'} pb={4}>
               <Box textAlign={'center'}>
-                <WarningIcon color="yellow.400" marginRight={4} />
-              </Box>
-              <Box>
-                <Text pb={2}>
-                  {
-                    'Please be adviced that this is a final exam project from KEA and is to be used at your own discretion.'
-                  }
-                </Text>
-                <Text>{'Any and all content found in this dApp is purely for educational purposes. '}</Text>
-              </Box>
-            </Box>
-
-            <Box display={'flex'} pb={4}>
-              <Box textAlign={'center'}>
                 <WarningTwoIcon color="red.400" marginRight={4} />
               </Box>
               <Box>
