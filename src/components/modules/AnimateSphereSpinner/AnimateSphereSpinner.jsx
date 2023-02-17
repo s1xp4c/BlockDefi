@@ -60,7 +60,7 @@ class AnimateSphere extends Component {
     return (
       <Box
         id={'myID'}
-        style={{ minWidth: '15vw', minHeight: '15vw' }}
+        style={{ minWidth: '35vw', minHeight: '35vw' }}
         ref={(mount) => {
           this.mount = mount;
         }}

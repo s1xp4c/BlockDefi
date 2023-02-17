@@ -46,7 +46,7 @@ const SideDrawer = () => {
             <DrawerHeader>DEFI OPTIONS</DrawerHeader>
 
             <DrawerBody>
-              <VStack gap={0} display={'flex'} align={'center'}>
+              <VStack gap={0} display={'flex'} align={'center'} onClick={onClose}>
                 {SNAV_LINKS.map((link) => (
                   <SnavItem key={`-link-${link.label}`} {...link} />
                 ))}
