@@ -3,9 +3,8 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 const config = {
   domain: process.env.APP_DOMAIN || 'blockdefi.netlify.app',
-  statement:
-    'Please sign this to confirm your identity and let BACD read and display the contents of your wallet. By signing this you also agree to the use of Cookies to enhance your user experience.',
-  uri: process.env.NEXTAUTH_URL || 'https://blockdefi.netlify.app',
+  statement: 'Please sign this to confirm your identity and let BACD read and display the contents of your wallet.',
+  uri: process.env.NEXTAUTH_URL || 'https://blockdefi.netlify.app/',
   timeout: 60,
 };
 
