@@ -11,7 +11,7 @@ import {
   Grid,
   Button,
 } from '@chakra-ui/react';
-import { QuestionIcon, WarningIcon, WarningTwoIcon } from '@chakra-ui/icons';
+import { QuestionIcon, WarningTwoIcon } from '@chakra-ui/icons';
 import { useEffect } from 'react';
 import { ConnectButton } from '../ConnectButton';
 import React from 'react';
