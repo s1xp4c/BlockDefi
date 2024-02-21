@@ -27,7 +27,7 @@
     "@uniswap/widgets": "^2.22.2",
     "@web3uikit/core": "^0.1.5",
     "@web3uikit/icons": "^0.1.5",
-    "axios": "^0.26.0",
+    "axios": "^0.28.0",
     "copy-to-clipboard-ultralight": "^1.0.15",
     "eslint": "8.22.0",
     "eslint-plugin-etc": "^2.0.2",
